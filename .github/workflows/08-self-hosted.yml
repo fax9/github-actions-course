@@ -5,6 +5,7 @@ jobs:
     runs-on: [self-hosted, my-laptop]
     steps:
       - name: Run on my own machine
+        shell: cmd
         run: |
-          echo "Running on my own laptop"
+          echo Running on my own laptop
           hostname
