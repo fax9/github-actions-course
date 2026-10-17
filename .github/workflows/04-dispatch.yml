@@ -1,0 +1,9 @@
+name: 04 Repository Dispatch
+on:
+  repository_dispatch:
+    types: [custom-webhook]
+jobs:
+  webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Payload message = ${{ github.event.client_payload.message }}"
