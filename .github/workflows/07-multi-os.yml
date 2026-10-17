@@ -1,0 +1,21 @@
+name: 07 Multi OS
+on: [workflow_dispatch]
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: Windows version, Choco and PowerShell
+        shell: pwsh
+        run: |
+          [System.Environment]::OSVersion
+          choco --version
+          Write-Host "Hello from PowerShell on Windows"
+  mac:
+    runs-on: macos-latest
+    steps:
+      - name: macOS version and Swift compile
+        run: |
+          sw_vers
+          echo 'print("Hello from Swift on macOS")' > hello.swift
+          swiftc hello.swift -o hello
+          ./hello
