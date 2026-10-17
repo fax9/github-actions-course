@@ -1,0 +1,10 @@
+name: 08 Self Hosted
+on: [workflow_dispatch]
+jobs:
+  local:
+    runs-on: [self-hosted, my-laptop]
+    steps:
+      - name: Run on my own machine
+        run: |
+          echo "Running on my own laptop"
+          hostname
