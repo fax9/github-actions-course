@@ -1,0 +1,28 @@
+name: 05 Contexts and Conditionals
+on: [push, workflow_dispatch]
+env:
+  COURSE: GitHub Actions
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print contexts
+        run: |
+          echo "Actor: ${{ github.actor }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Runner OS: ${{ runner.os }}"
+          echo "Env COURSE: ${{ env.COURSE }}"
+          echo "Var MY_VAR: ${{ vars.MY_VAR }}"
+      - name: Runs only if commit message contains deploy
+        if: contains(github.event.head_commit.message, 'deploy')
+        run: echo "Deploy keyword found in commit message"
+      - name: On success
+        if: success()
+        run: echo "Previous steps succeeded"
+      - name: On failure
+        if: failure()
+        run: echo "Something failed"
+      - name: Always
+        if: always()
+        run: echo "This always runs"
