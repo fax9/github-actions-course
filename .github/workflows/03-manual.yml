@@ -1,0 +1,19 @@
+name: 03 Manual
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Your name'
+        required: true
+        default: 'Student'
+      greeting:
+        description: 'Greeting'
+        default: 'Hello'
+      data:
+        description: 'Extra data'
+        default: 'none'
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ inputs.greeting }}, ${{ inputs.name }}! Data = ${{ inputs.data }}"
